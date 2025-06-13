@@ -27,13 +27,6 @@ def registration_form():
             placeholder="Podaj hasło",
             key="reg_password"
         )
-        password_repeat = st.text_input(
-            "Powtórz hasło",
-            type="password",
-            value="",
-            placeholder="Powtórz hasło",
-            key="reg_password_repeat"
-        )
         submit = st.form_submit_button("Zarejestruj")
 
     if submit:
