@@ -29,7 +29,7 @@ if not (st.session_state.current_user and st.session_state.jwt_token):
             cols = st.columns([1, 1, 1])
             with cols[1]:
                 form()
-    
+
     st.stop()
 
 col_left, col_right = st.columns([9, 1])
@@ -43,9 +43,10 @@ with col_right:
 
 navigation_tree = {
     "Main": [
-        st.Page("app_pages/home.py", title="Strona główna", icon=":material/home:"),
-        st.Page("app_pages/charts.py", title="Wykresy", icon=":material/show_chart:"),
-        st.Page("app_pages/change_password.py", title="Zmień hasło", icon=":material/key:"),
+        st.Page("app_pages/home.py", title="Strona główna",
+                icon=":material/home:"),
+        st.Page("app_pages/change_password.py",
+                title="Zmień hasło", icon=":material/key:"),
     ],
 }
 

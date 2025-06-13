@@ -4,6 +4,7 @@ import streamlit as st
 
 BASE_URL = "http://localhost:8000"
 
+
 def register_user(email: str, password: str):
     try:
         payload = {"email": email, "password": password}
@@ -70,6 +71,27 @@ def change_password(old_password: str, new_password: str):
         )
         if resp.status_code == 204:
             return True, "Hasło zmienione pomyślnie."
+        else:
+            try:
+                error_json = resp.json()
+                message = error_json.get("detail", resp.text)
+            except ValueError:
+                message = resp.text
+            return False, message
+    except RequestException as e:
+        return False, f"Błąd połączenia z serwerem: {e}"
+
+
+def get_charts_data():
+    try:
+        headers = get_auth_headers()
+        resp = requests.get(
+            f"{BASE_URL}/charts/",
+            headers=headers,
+            timeout=5
+        )
+        if resp.status_code == 200:
+            return True, resp.json()
         else:
             try:
                 error_json = resp.json()
